@@ -4,7 +4,7 @@ defmodule Phxpay.Users.Create do
 
   def call(params) do
     # Ecto.Multi enables us to execute more than one operation in the same
-    # transaction on the database avoiding database io
+    # transaction in the database avoiding database io
     Multi.new()
     |> Multi.insert(:create_user, User.changeset(params))
     |> Multi.run(:create_account, fn repo, %{create_user: user} ->
